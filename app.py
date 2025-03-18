@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
+import streamlit.components.v1 as components
 
 # Page Title
 st.title("Sakhi Creation - Women's Fashion Store")
 st.write("Welcome to Sakhi Creation, your go-to shop for elegant and trendy women's fashion!")
 
-# Product Showcase
+# Product Showcase with Horizontal Scrolling
 st.header("Our Featured Products")
 products = [
     {"name": "Elegant Kurti", "price": "₹1200", "image": "https://via.placeholder.com/200", "desc": "Beautiful cotton kurti with embroidery."},
@@ -15,15 +16,21 @@ products = [
     {"name": "Western Dress", "price": "₹1800", "image": "https://via.placeholder.com/200", "desc": "Chic western dress for every occasion."},
 ]
 
+carousel_html = """
+<div style="overflow-x: auto; white-space: nowrap; width: 100%;">
+"""
 for product in products:
-    col1, col2 = st.columns([1, 2])
-    with col1:
-        st.image(product["image"], width=150)
-    with col2:
-        st.subheader(product["name"])
-        st.write(product["desc"])
-        st.write(f"**Price:** {product['price']}")
-    st.markdown("---")
+    carousel_html += f"""
+    <div style="display: inline-block; text-align: center; margin: 10px;">
+        <img src="{product['image']}" width="150"><br>
+        <strong>{product['name']}</strong><br>
+        {product['desc']}<br>
+        <strong>{product['price']}</strong>
+    </div>
+    """
+carousel_html += "</div>"
+
+components.html(carousel_html, height=250)
 
 # Exhibition Locations
 st.header("Upcoming Exhibitions")
