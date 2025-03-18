@@ -22,7 +22,7 @@ carousel_html = """
 for product in products:
     carousel_html += f"""
     <div style="display: inline-block; text-align: center; margin: 10px;">
-        <img src="{product['image']}" width="150"><br>
+        <img src="{product['image']}" width="70%"><br>
         <strong>{product['name']}</strong><br>
         {product['desc']}<br>
         <strong>{product['price']}</strong>
