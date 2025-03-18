@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import folium
-from streamlit_folium import folium_static
 
 # Page Title
 st.title("Sakhi Creation - Women's Fashion Store")
@@ -38,9 +36,7 @@ exhibitions = [
 for expo in exhibitions:
     st.subheader(expo["name"])
     st.write(f"**Location:** {expo['location']}")
-    map_obj = folium.Map(location=[expo["lat"], expo["lon"]], zoom_start=12)
-    folium.Marker([expo["lat"], expo["lon"]], popup=expo["name"]).add_to(map_obj)
-    folium_static(map_obj)
+    st.map(pd.DataFrame({"lat": [expo["lat"]], "lon": [expo["lon"]]}))
     st.markdown("---")
 
 # Google Drive Link for Full Catalog
