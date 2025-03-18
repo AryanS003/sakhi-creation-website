@@ -1,5 +1,2 @@
-folium
 pandas
 streamlit
-folium_static
-streamlit_folium
